@@ -13,6 +13,6 @@ docker run -it -d -p 6000:6000 -v $(pwd):/host_files --name flask_srv flask_img 
 
 # Start the Flask server in the container
 
-docker exec -it flask_srv python3 /host_files/api.py
+docker exec -it flask_srv bash -c "cd /host_files && python3 api.py"
 
 # You should be able to reach the Flask server at http://localhost:6000/ using Postman (GET)

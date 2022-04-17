@@ -1,9 +1,12 @@
 from flask import Flask
 from flask_restful import Resource, Api, reqparse
-# import pandas as pd
-# from sklearn.preprocessing import OneHotEncoder, StandardScaler
+import pandas as pd
+import pickle
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
-# import pickle
+scaler = pickle.load(open("scaler.pkl", "rb"))
+encoder = pickle.load(open("encoder.pkl", "rb"))
+model = pickle.load(open("DecisionTreeClassifier.pkl", "rb"))
 
 app = Flask(__name__)
 api = Api(app)
@@ -31,7 +34,7 @@ class Titanic(Resource):
 
         # 'SibSp' must be int
         try:
-            SibSp = int(args['SibSp'])
+            sibsp = int(args['SibSp'])
         except:
             return {
                 'message': "'{}' is not a valid SibSp value (number of siblings and spouses aboard the Titanic must be integer).".format(args['SibSp'])
@@ -39,7 +42,7 @@ class Titanic(Resource):
 
         # 'Fare' must be float
         try:
-            Fare = float(args['Fare'])
+            fare = float(args['Fare'])
         except:
             return {
                 'message': "'{}' is not a valid Fare in british pounds value (must be float or int).".format(args['Fare'])
@@ -51,11 +54,15 @@ class Titanic(Resource):
                 'message': f"'{args['Sex']}' is not a valid Sex value (must be 'female' or 'male')."
             }, 400
 
+        sex = args['Sex']
+
         # 'Cabin' is in ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'T', 'W', 'Z']
         if args['Cabin'] not in ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'T', 'W', 'Z']:
             return {
                 'message': f"'{args['Cabin']}' is not a valid Cabin letter (must be 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'T', 'W' or 'Z')."
             }, 400
+
+        cabin = args['Cabin']
 
         # 'Embarked' is in ['C', 'Q', 'S']
         if args['Embarked'] not in ['C', 'Q', 'S']:
@@ -63,14 +70,26 @@ class Titanic(Resource):
                 'message': f"'{args['Embarked']}' is not a valid port of departure letter (must be 'C', 'Q' or 'S')."
             }, 400
 
-    #   normalize 'Age', 'SibSp', 'Fare'
-    #         scaler = json.loads(scaler_json)
+        embarked = args['Embarked']
 
-    #   encode 'Sex', 'Cabin', 'Embarked'
-    #         encoder = json.loads(encoder_json)
+        df1 = pd.DataFrame(index=[1], data={'Age': age,
+                                            'Fare': fare,
+                                            'SibSp': sibsp,
+                                            'Sex': sex,
+                                            'Cabin': cabin,
+                                            'Embarked': embarked})
+        df1.loc[:, ['Age', 'Fare', 'SibSp']] = scaler.transform(
+            df1.loc[:, ['Age', 'Fare', 'SibSp']])
+        df1_encoded = pd.DataFrame(encoder.transform(
+            df1[['Sex', 'Cabin', 'Embarked']]))
+        df1_encoded.index = [1]
+        df1 = df1.drop(columns=['Sex', 'Cabin', 'Embarked'])
+        df1 = pd.concat([df1, df1_encoded], axis=1)
 
-        # return data and 200 OK
-        return {'survived': 'I will tell you soon'}, 200
+        if model.predict(df1)[0] == 0:
+            return {'Prediction': 'That passenger probably did not survive'}, 200
+        else:
+            return {'Prediction': 'That passenger probably survived!'}, 200
 
 
 api.add_resource(Titanic, '/titanic')  # add endpoint
