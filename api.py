@@ -3,10 +3,14 @@ from flask_restful import Resource, Api, reqparse
 import pandas as pd
 import pickle
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
+import json
 
 scaler = pickle.load(open("scaler.pkl", "rb"))
 encoder = pickle.load(open("encoder.pkl", "rb"))
 model = pickle.load(open("DecisionTreeClassifier.pkl", "rb"))
+
+with open('./Titanic_ML_regressor-1-resolved.json') as openapi_file:  # Swagger file
+    openapi_description = json.load(openapi_file)
 
 app = Flask(__name__)
 api = Api(app)
@@ -21,6 +25,11 @@ parser.add_argument('Embarked', required=True)
 
 
 class Titanic(Resource):
+
+    def options(self):
+        print(openapi_description)
+        return {'OpenAPI document': openapi_description}
+
     def get(self):  # , SibSp, Fare, Sex, Cabin, Embarked
         args = parser.parse_args()
 
