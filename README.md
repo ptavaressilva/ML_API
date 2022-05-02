@@ -8,7 +8,7 @@ This repository contains an API that predicts using a previously trained ML mode
 
 The API is written in Python and infrastructure as code is provided (in the `dev_env` folder) to host it in a Flask development container (requires Docker esktop).
 
-Training the ML model falls outside of the scope of this exercise, so a previously trained classifier model from my [Titanic GitHub repository](https://github.com/ptavaressilva/titanic) was used .
+Training the ML model falls outside of the scope of this exercise, so a previously trained classifier model from my [Titanic GitHub repository](https://github.com/ptavaressilva/titanic) was used.
 
 In order to prepare the data for the model, a previously trained Standard Scaler and One-Hot Encoder are also included.
 
@@ -44,4 +44,4 @@ with Postman, or any another similar application of your choosing.
 
 ![GET on endpoint /titanic](img/1.01.png)
 
-[OpenAPI definition (OAS3)](Titanic_ML_regressor-1-resolved.json)
+To run tests use `python -m pytest`

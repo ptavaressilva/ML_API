@@ -38,7 +38,7 @@ class Titanic(Resource):
         except:
             return {
                 'message': f"'{args['Age']}' is not a valid number of years (must be float or int)."
-            }, 200
+            }, 400
 
         # 'SibSp' must be int
         try:
@@ -46,7 +46,7 @@ class Titanic(Resource):
         except:
             return {
                 'message': "'{}' is not a valid SibSp value (number of siblings and spouses aboard the Titanic must be integer).".format(args['SibSp'])
-            }, 200
+            }, 400
 
         # 'Fare' must be float
         try:
