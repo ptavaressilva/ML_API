@@ -2,6 +2,8 @@
 
 ![Titanic API](img/0.03.png)
 
+![workflow](https://github.com/ptavaressilva/ML_API/actions/workflows/ML_API.yml/badge.svg)
+
 Once you train a Machine Learning model the obvious next step is to embbed it in an application. This can be done by creating an API that returns the model prediction, which the application then can use to use the prediction.
 
 This repository contains an API that predicts using a previously trained ML model (a Decision Tree Classifier).
