@@ -95,7 +95,7 @@ class Titanic(Resource):
         df1 = df1.drop(columns=['Sex', 'Cabin', 'Embarked'])
         df1 = pd.concat([df1, df1_encoded], axis=1)
 
-        if model.predict(df1)[0] == 0:
+        if model.predict(df1.values)[0] == 0:
             return {'Prediction': 'That passenger probably did not survive'}, 200
         else:
             return {'Prediction': 'That passenger probably survived!'}, 200
