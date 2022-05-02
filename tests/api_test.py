@@ -1,10 +1,6 @@
 '''
-This module contains test cases for apy.py
+This module contains test cases for api.py
 '''
-
-
-# hasattr(Dynamo, key) and callable(getattr(Dynamo, key))
-# https://stackoverflow.com/questions/7580532/how-to-check-whether-a-method-exists-in-python
 
 import api
 from pathlib import Path
@@ -25,6 +21,6 @@ def test_options_method():
 
 
 def test_ML_files_exist():
-    assert Path("DecisionTreeClassifier.pkl").is_file()
-    assert Path("encoder.pkl").is_file()
-    assert Path("scaler.pkl").is_file()
+    assert Path("ML/DecisionTreeClassifier.pkl").is_file()
+    assert Path("ML/encoder.pkl").is_file()
+    assert Path("ML/scaler.pkl").is_file()

@@ -2,7 +2,6 @@ from flask import Flask
 from flask_restful import Resource, Api, reqparse
 import pandas as pd
 import pickle
-from sklearn.preprocessing import OneHotEncoder, StandardScaler
 import json
 
 scaler = pickle.load(open("ML/scaler.pkl", "rb"))
