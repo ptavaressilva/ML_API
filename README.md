@@ -45,3 +45,5 @@ with Postman, or any another similar application of your choosing.
 ![GET on endpoint /titanic](img/1.01.png)
 
 To run tests use `python -m pytest`
+
+![Running tests](img/1.02.png)
