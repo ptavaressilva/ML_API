@@ -5,9 +5,9 @@ import pickle
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 import json
 
-scaler = pickle.load(open("scaler.pkl", "rb"))
-encoder = pickle.load(open("encoder.pkl", "rb"))
-model = pickle.load(open("DecisionTreeClassifier.pkl", "rb"))
+scaler = pickle.load(open("ML/scaler.pkl", "rb"))
+encoder = pickle.load(open("ML/encoder.pkl", "rb"))
+model = pickle.load(open("ML/DecisionTreeClassifier.pkl", "rb"))
 
 with open('./Titanic_ML_regressor-1-resolved.json') as openapi_file:  # Swagger file
     openapi_description = json.load(openapi_file)
