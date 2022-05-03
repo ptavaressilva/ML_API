@@ -1,8 +1,8 @@
 # Machine Learning API
 
-![Titanic API](img/0.03.png)
-
 ![workflow](https://github.com/ptavaressilva/ML_API/actions/workflows/ML_API.yml/badge.svg)
+
+![Titanic API](img/0.03.png)
 
 Once you train a Machine Learning model the obvious next step is to embbed it in an application. This can be done by creating an API that returns the model prediction, which the application then can use to use the prediction.
 
@@ -46,6 +46,6 @@ with Postman, or any another similar application of your choosing.
 
 ![GET on endpoint /titanic](img/1.01.png)
 
-To run tests use `python -m pytest`
+To run tests use the command `pytest`
 
 ![Running tests](img/1.02.png)
