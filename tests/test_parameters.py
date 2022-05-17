@@ -1,10 +1,11 @@
 from api import app
 from flask import json
 
+TITANIC='/titanic'
 
 def test_prediction():
     response = app.test_client().get(
-        '/titanic',
+        TITANIC,
         data=json.dumps({
             "Age": "10",
             "Fare": "123.0",
@@ -24,7 +25,7 @@ def test_prediction():
 
 def test_missing_age():
     response = app.test_client().get(
-        '/titanic',
+        TITANIC,
         data=json.dumps({
             "Fare": "123.0",
             "SibSp": "2",
@@ -43,7 +44,7 @@ def test_missing_age():
 
 def test_missing_fare():
     response = app.test_client().get(
-        '/titanic',
+        TITANIC,
         data=json.dumps({
             "Age": "10.0",
             "SibSp": "2",
@@ -62,7 +63,7 @@ def test_missing_fare():
 
 def test_missing_SibSp():
     response = app.test_client().get(
-        '/titanic',
+        TITANIC,
         data=json.dumps({
             "Age": "10.0",
             "Fare": "123.0",
@@ -81,7 +82,7 @@ def test_missing_SibSp():
 
 def test_missing_sex():
     response = app.test_client().get(
-        '/titanic',
+        TITANIC,
         data=json.dumps({
             "Age": "10.0",
             "Fare": "123.0",
@@ -100,7 +101,7 @@ def test_missing_sex():
 
 def test_missing_cabin():
     response = app.test_client().get(
-        '/titanic',
+        TITANIC,
         data=json.dumps({
             "Age": "10.0",
             "Fare": "123.0",
@@ -119,7 +120,7 @@ def test_missing_cabin():
 
 def test_missing_embarked():
     response = app.test_client().get(
-        '/titanic',
+        TITANIC,
         data=json.dumps({
             "Age": "10.0",
             "Fare": "123.0",
@@ -138,7 +139,7 @@ def test_missing_embarked():
 
 def test_age_is_num():
     response = app.test_client().get(
-        '/titanic',
+        TITANIC,
         data=json.dumps({
             "Age": "abc",
             "Fare": "123.0",
@@ -158,7 +159,7 @@ def test_age_is_num():
 
 def test_fare_is_num():
     response = app.test_client().get(
-        '/titanic',
+        TITANIC,
         data=json.dumps({
             "Age": "10.0",
             "Fare": "abc",
@@ -178,7 +179,7 @@ def test_fare_is_num():
 
 def test_sibsp_is_num():
     response = app.test_client().get(
-        '/titanic',
+        TITANIC,
         data=json.dumps({
             "Age": "10.0",
             "Fare": "123.0",
@@ -198,7 +199,7 @@ def test_sibsp_is_num():
 
 def test_sex_is_valid():
     response = app.test_client().get(
-        '/titanic',
+        TITANIC,
         data=json.dumps({
             "Age": "10.0",
             "Fare": "123.0",
@@ -218,7 +219,7 @@ def test_sex_is_valid():
 
 def test_cabin_is_valid():
     response = app.test_client().get(
-        '/titanic',
+        TITANIC,
         data=json.dumps({
             "Age": "10",
             "Fare": "123.0",
@@ -238,7 +239,7 @@ def test_cabin_is_valid():
 
 def test_embarked_is_valid():
     response = app.test_client().get(
-        '/titanic',
+        TITANIC,
         data=json.dumps({
             "Age": "10",
             "Fare": "123.0",
