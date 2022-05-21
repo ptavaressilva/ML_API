@@ -20,7 +20,7 @@ def test_options_method():
     assert callable(getattr(api.Titanic, 'options'))
 
 
-def test_ML_files_exist():
+def test_ml_files_exist():
     assert Path("ML/DecisionTreeClassifier.pkl").is_file()
     assert Path("ML/encoder.pkl").is_file()
     assert Path("ML/scaler.pkl").is_file()

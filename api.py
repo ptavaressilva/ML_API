@@ -35,7 +35,7 @@ class Titanic(Resource):
         # 'Age' must be float
         try:
             age = float(args['Age'])
-        except:
+        except ValueError:
             return {
                 'message': f"'{args['Age']}' is not a valid number of years (must be float or int)."
             }, 400
@@ -43,7 +43,7 @@ class Titanic(Resource):
         # 'SibSp' must be int
         try:
             sibsp = int(args['SibSp'])
-        except:
+        except ValueError:
             return {
                 'message': "'{}' is not a valid SibSp value (number of siblings and spouses aboard the Titanic must be integer).".format(args['SibSp'])
             }, 400
@@ -51,7 +51,7 @@ class Titanic(Resource):
         # 'Fare' must be float
         try:
             fare = float(args['Fare'])
-        except:
+        except ValueError:
             return {
                 'message': "'{}' is not a valid Fare in british pounds value (must be float or int).".format(args['Fare'])
             }, 400

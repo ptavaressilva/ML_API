@@ -101,6 +101,11 @@ __pypackages__/
 celerybeat-schedule
 celerybeat.pid
 
+# SonarQube stuff
+sonar-project.properties
+dev_env/sonarcube_scan.sh
+dev_env/start_sonnarqube.sh
+
 # SageMath parsed files
 *.sage.py
 

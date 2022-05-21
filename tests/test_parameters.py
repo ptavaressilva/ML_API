@@ -2,9 +2,10 @@ from api import app
 from flask import json
 
 # Literals
-TITANIC='/titanic'
-CONTENT_TYPE='application/json'
-MSG_MISS='Missing required parameter in the JSON body'
+TITANIC = '/titanic'
+CONTENT_TYPE = 'application/json'
+MSG_MISS = 'Missing required parameter in the JSON body'
+
 
 def test_prediction():
     response = app.test_client().get(
@@ -64,7 +65,7 @@ def test_missing_fare():
     assert MSG_MISS in data['message']['Fare']
 
 
-def test_missing_SibSp():
+def test_missing_sibsp():
     response = app.test_client().get(
         TITANIC,
         data=json.dumps({
